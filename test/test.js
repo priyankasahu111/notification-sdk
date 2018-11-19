@@ -8,14 +8,14 @@ describe('SendEmail', function () {
     var connectionString = {
         "service": "gmail",
         "host"   : "smtp.gmail.com",
-        "user" : "giri.cateina@gmail.com",
-        "pass" : "shank@0601"
+        "user" : "xyz@gmail.com",
+        "pass" : "password"
     }
     
     var mailDetail = {
-        "to" : "priyanka@cateina.com",
-        "cc" : "giri@cateina.com ",
-        "bcc" : "prnksh30@gmail.com ",
+        "to" : "xyz@cateina.com",
+        "cc" : "xyz@cateina.com ",
+        "bcc" : "xyz@gmail.com ",
         "subject" : "TESTING ",
         "mailBody" : "TESTING "
     }
@@ -38,14 +38,14 @@ describe('SendSms', function () {
     console.log("HI SMS ");
 
 var GatewayDetails = {
-    "user": "rajish.cateina@gmail.com",
-    "hash"   : "6b3029135a63d10c135c72880c759be2eea761bdac1b0975c0112dfd920a55fb",
-    "sender" :  "txtlcl",
-    "apiKey" : "Njli+lo8se-96YPODJbzXrXE6JvcJEA3Bbd0csscC"
+    "user": "xyz@gmail.com",
+    "hash"   : "6b302913dsd5a63d10c135c72880c759besadfsfsdf2eea761bdac1b0975c0112dfd920a55fb",
+    "sender" :  "asdfg",
+    "apiKey" : "Njli+lo8se-96YPODJbzXsdfdsfsdrXE6JvcJEA3Bbd0csscC"
 }
 
 var msgDetails = {
-    "mobilleNumber" : "9594176036",
+    "mobilleNumber" : "789632****",
     "smsBody" : "TESTING "
 }
 

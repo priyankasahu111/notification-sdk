@@ -66,14 +66,14 @@ notification.sendEmail({Connection Details in JSON Format}, {mailDetail details 
 #For Example
 
 var GatewayDetails = {
-    "user": "rajish.cateina@gmail.com",
-    "hash"   : "6b3029135a63d10c135c72880c759be2eea761bdac1b0975c0112dfd920a55fb",
-    "sender" :  "txtlcl",
-    "apiKey" : "Njli+lo8se-96YPODJbzXrXE6JvcJEA3Bbd0csscC"
+    "user": "xys@gmail.com",
+    "hash"   : "6b3029135a63d10c135c7288sdfsdfds0c759be2eea761bdac1b0975c0112dfd920a55fb",
+    "sender" :  "txtlfdsfdscl",
+    "apiKey" : "Njli+lo8se-96YPODsdfdsfdsJbzXrXE6JvcJEA3Bbd0csscC"
 }
 
 var msgDetails = {
-    "mobilleNumber" : "9594176036",
+    "mobilleNumber" : "789654****",
     "smsBody" : "TESTING "
 }
 
