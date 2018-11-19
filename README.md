@@ -38,14 +38,14 @@ notification.sendEmail({GatewayDetails Details in JSON Format}, {msgDetails deta
 var connectionString = {
         "service": "gmail",
         "host"   : "smtp.gmail.com",
-        "user" : "giri.cateina@gmail.com",
-        "pass" : "shank@0601"
+        "user" : "jhi@gmail.com",
+        "pass" : "password"
     }
     
     var mailDetail = {
-        "to" : "priyanka@cateina.com",
-        "cc" : "giri@cateina.com ",
-        "bcc" : "prnksh30@gmail.com ",
+        "to" : "abc@gmail.com",
+        "cc" : "pqr@gmail.com ",
+        "bcc" : "xyz@gmail.com ",
         "subject" : "TESTING ",
         "mailBody" : "TESTING "
     }
