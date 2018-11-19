@@ -1,8 +1,8 @@
-# crud-sdk
-A microservice that can be used by other applications to perform all CRUD operations for MongoDB.
+# notification-sdk
+A microservice that can be used by other applications to send notifcation via mail/sms
 
 ## SDK for developers
-The crud-sdk helps developers to perform create, read, update, delete operations on MongoDB for any application.
+The notification-sdk helps developers to send notification using mai/sms for any application.
 
 ## Deployment
 The project is hosted on GitHub. 
@@ -24,51 +24,63 @@ npm install -S crud-sdk
 
 ## How to use crud-sdk
 ```sh
-var crud = require('crud-sdk');
+var notification = require('notification-sdk');
 
-# Create (Store data in MongoDB)
-crud.create(<mongodb-connection-string>, <db-name>, <collection-name>, {DATA in JSON Format}, function (err, data) {
+
+
+
+# Send mail
+notification.sendEmail({GatewayDetails Details in JSON Format}, {msgDetails details in JSON format}, function (err, data) {
             if (err) // do something
 });
 
-# Update (Update already data stored in MongoDB)
-crud.update(<mongodb-connection-string>, <db-name>, <collection-name>, {Field/Data to be updated in JSON}, {Update Condition in JSON}, function (err, result) {
+#For Example
+var connectionString = {
+        "service": "gmail",
+        "host"   : "smtp.gmail.com",
+        "user" : "giri.cateina@gmail.com",
+        "pass" : "shank@0601"
+    }
+    
+    var mailDetail = {
+        "to" : "priyanka@cateina.com",
+        "cc" : "giri@cateina.com ",
+        "bcc" : "prnksh30@gmail.com ",
+        "subject" : "TESTING ",
+        "mailBody" : "TESTING "
+    }
+    
+    
+            notification.sendEmail(connectionString, mailDetail, function (err, data) {
+                if (err) {
+                    console.error(err);
+                }
+            });
+    
+
+# Send Sms
+notification.sendEmail({Connection Details in JSON Format}, {mailDetail details in JSON format}, function (err, data) {
             if (err) // do something
 });
 
-# Delete (Delete a data from MongoDB)
-crud.delete(<mongodb-connection-string>, <db-name>, <collection-name>, {Delete Condition in JSON}, function (err, result) {
-            if (err) // do something
-});
+#For Example
 
-#ReadById (Read Data from MongoDB using Mongo ObjectId)
-crud.readById(<mongodb-connection-string>, <db-name>, <collection-name>, <mongo-objectId>, {Params Condition in JSON Format}, function (err, result) {
-            if (err) // do something
-});
+var GatewayDetails = {
+    "user": "rajish.cateina@gmail.com",
+    "hash"   : "6b3029135a63d10c135c72880c759be2eea761bdac1b0975c0112dfd920a55fb",
+    "sender" :  "txtlcl",
+    "apiKey" : "Njli+lo8se-96YPODJbzXrXE6JvcJEA3Bbd0csscC"
+}
 
-#ReadByCondition (Read Data from MongoDB using condition)
-crud.readByCondition(<mongodb-connection-string>, <db-name>, <collection-name>, {Read Condition in JSON Format},{Params Condition in JSON Format}, function (err, result) {
-            if (err) // do something
-});
-
-#ReadAll (Read All Data from MongoDB for a collection)
-crud.readByCondition(<mongodb-connection-string>, <db-name>, <collection-name>, {}, function (err, result) {
-            if (err) // do something
-});
-
-#Sort (Read and Sort Data from MongoDB using condition)
-crud.sort(<mongodb-connection-string>, <db-name>, <collection-name>, {Read Condition in JSON Format}, { Sort Condition in JSON Format }, {Params Condition in JSON Format}, function (err, result) {
-            if (err) // do something
-});
+var msgDetails = {
+    "mobilleNumber" : "9594176036",
+    "smsBody" : "TESTING "
+}
 
 
-#Aggregate (Read and Aggregate Data from MongoDB to process data records and return computed results.)
-crud.aggregate(<mongodb-connection-string>, <db-name>, <collection-name>,  <aggregate-condition>, function (err, result) {
-            if (err) // do something
-});
-
-#Limit (Read and Limit Data from MongoDB using condition)
-crud.limit(<mongodb-connection-string>, <db-name>, <collection-name>, {Read Condition in JSON Format}, <skip-in-numbers>, <limit-in-numbers>, {Params Condition in JSON Format}, function (err, result) {
-            if (err) // do something
-});
+        notification.sendSMS(GatewayDetails, msgDetails, function (err, data) {
+            if (err) {
+                console.error(err);
+            }
+        });
 ```
