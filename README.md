@@ -16,13 +16,13 @@ node --version
 ```
 ```sh
 # Access the SDK using below command within the project directory
-npm install crud-sdk
+npm install notification-sdk
 
 # To save and install the SDK in your application package.json use below command within the project directory.
-npm install -S crud-sdk
+npm install -S notification-sdk
 ```
 
-## How to use crud-sdk
+## How to use notification-sdk
 ```sh
 var notification = require('notification-sdk');
 
