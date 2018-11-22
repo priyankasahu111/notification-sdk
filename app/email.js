@@ -46,7 +46,7 @@ function sendEmail(connectionString, mailDetail, callback) {
 
         smtpTransport.sendMail(mailOptions, function (error, response) {
             if (error) {
-                deferred.reject('Failed to send E-mail.');
+                // deferred.reject('Failed to send E-mail.');
                 return callback(error, 'Failed to send E-mail.');
 
             } else {
