@@ -60,4 +60,34 @@ function sendSMS(GatewayDetails, msgDetails, callback) {
 
 }
 
+
+function sendSMSTwilio(GatewayDetails, msgDetails, callback) {
+    try {
+
+        // var MessagingResponse = require('twilio').twiml.MessagingResponse;
+        var accountSid = 'AC4869862731b1d38c641d5e88eec7098e';  //ComGo Account details
+        var authToken = '875bcb10dfce2ed72030d1b76fcc7e40';     //ComGo Account details
+        var twilioNumber = '+14302201214';                      //ComGo Account details
+        
+        var client = require('twilio')(accountSid, authToken);
+        
+        client.messages
+          .create({
+            to: "9594176036",
+            from: twilioNumber,
+            body: 'Hi this is test sms',
+          })
+          .then(message =>
+            console.log("sms sent token => ", message)
+          ).catch(error => 
+          console.log("error to send sms -> ",error)
+          );
+
+    } catch (err) {
+        throw err;
+    }
+
+}
+
 module.exports.sendSMS = sendSMS;
+module.exports.sendSMSTwilio = sendSMSTwilio;
