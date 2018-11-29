@@ -73,15 +73,18 @@ function sendSMSTwilio(GatewayDetails, msgDetails, callback) {
         
         client.messages
           .create({
-            to: msgDetails.toNumber,
+            to: msgDetails.mobilleNumber,
             from: twilioNumber,
             body: msgDetails.smsBody,
           })
-          .then(message =>
-            console.log("sms sent token => ", message)
-          ).catch(error => 
+          .then(function(message){
+            console.log("sms sent token => ", message);
+            return callback(message);
+
+          }).catch(function(error){
           console.log("error to send sms -> ",error)
-          );
+          return callback(error);
+          });
 
     } catch (err) {
         throw err;
