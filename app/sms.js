@@ -43,12 +43,12 @@ function sendSMS(GatewayDetails, msgDetails, callback) {
             response.on('data', function (chunk) {
                 // console.log('chunk ==>',chunk);
                 str += chunk;
-                return callback(str);
+                return callback('',str);
 
             });                                         //the whole response has been recieved, so we just print it out here
             response.on('end', function () {
                 // console.log('str ==>',str);
-                return callback(data);
+                return callback('',data);
 
             })
         }        
@@ -79,11 +79,11 @@ function sendSMSTwilio(GatewayDetails, msgDetails, callback) {
           })
           .then(function(message){
             console.log("sms sent token => ", message);
-            return callback(message);
+            return callback('',message);
 
           }).catch(function(error){
           console.log("error to send sms -> ",error)
-          return callback(error);
+          return callback(error,'');
           });
 
     } catch (err) {

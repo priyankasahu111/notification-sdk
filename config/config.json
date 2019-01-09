@@ -1,0 +1,21 @@
+{
+
+    "connectionString": "mongodb://127.0.0.1:27017/BAROSA",
+    "connectionStringForSDk": "mongodb://127.0.0.1:27017/",
+    "dbName": "BAROSA",
+    "secret": "akshaymamtavinishgiridowhatyouwanthahahahahahahaaha",
+    "port": "8093",
+    "localNodeIP": "localhost",
+    "hyperLederIP": "54.186.214.215",
+    "hyperLederPort": "4000",
+    "angularIP": "localhost",
+    "angularPort": "4200",
+    "allowUrl": "http://localhost:4200",
+    "accountSid" : "AC4869862731b1d38c641d5e88eec7098e",
+    "authToken": "875bcb10dfce2ed72030d1b76fcc7e40",
+    "twilioNumber": "+14302201214"  ,
+    "service": "gmail",
+    "host": "smtp.gmail.com",
+    "user": "giri.cateina@gmail.com",
+    "pass": "shank@0601"
+}

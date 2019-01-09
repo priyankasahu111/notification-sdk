@@ -26,6 +26,10 @@ function sendEmail(connectionString, mailDetail, callback) {
         var sub = mailDetail.subject;
         var cc = mailDetail.cc;
         var bcc = mailDetail.bcc;
+        var attachmentPath = mailDetail.attachmentPath;
+        var fileName = mailDetail.fileName;
+
+
 
         var smtpTransport = nodemailer.createTransport({
             service: connectionString.service,
@@ -41,7 +45,11 @@ function sendEmail(connectionString, mailDetail, callback) {
             cc: cc,
             bcc: bcc,
             subject: sub,
-            text: mailBody
+            text: mailBody,
+            attachments: [{ // file on disk as an attachment
+                filename: fileName,
+                path: attachmentPath // stream this file
+            }]
         }
 
         smtpTransport.sendMail(mailOptions, function (error, response) {
@@ -51,7 +59,7 @@ function sendEmail(connectionString, mailDetail, callback) {
 
             } else {
                 console.log("mail response", response);
-                return callback(error, response);
+                return callback('', response);
 
 
             }
