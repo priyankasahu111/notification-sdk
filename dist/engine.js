@@ -1,7 +1,7 @@
 var mail = require('../app/email');
 var sms = require('../app/sms');
-var generateTemplate = require('../app/generateTemplate')
-var generateSMS = require('../app/generateSMS')
+var generateTemplate = require('../app/generateTemplate.controller')
+var generateSMS = require('../app/generateSMS.controller')
 
 
 module.exports.sendEmail = mail.sendEmail

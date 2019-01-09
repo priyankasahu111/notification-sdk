@@ -21,8 +21,11 @@
   "author": "Priyanka Sahu",
   "license": "MIT",
   "dependencies": {
+    "crud-sdk": "0.0.29",
+    "cryptr": "^4.0.2",
     "http": "0.0.0",
     "nodemailer": "^4.6.8",
+    "q": "^1.5.1",
     "twilio": "^3.24.0",
     "urlencode": "^1.1.0"
   },

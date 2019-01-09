@@ -1,0 +1,13 @@
+templateDetail={
+"tempName":"BAROSA",
+"appName":"BAROSA",
+"placeholder":{"@userName":"Priyanka","@contract":"Contract Name"},
+"receiverMailId":["priyanka@cateina.com","giri@cateina.com"],
+"ccMailId":["priyankasahu437@gmail.com"],
+"bccMailId":["prnksh30@gmail.com"],
+"receiverPhoneNo":"8828564967",
+"dbDetails":{
+    "connectionStringForSDk":"mongodb://127.0.0.1:27017/",
+    "dbName":"BAROSA"
+}
+}

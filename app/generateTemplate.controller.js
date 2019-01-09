@@ -22,7 +22,7 @@ function generateTemplate(templateDetial, callback) {
 
 
 function sendMail(mailData,callback) {
-    console.log("send email function "+req.body);
+    console.log("send email function "+mailData);
 
     // generateMailService.saveMailInfo(req.body).then(function (data) {
     //     console.log("And now we get data here", data)
