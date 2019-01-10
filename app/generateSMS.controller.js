@@ -8,7 +8,8 @@ function sendSMS(smsData,callback) {
         console.log("And now we get data here", data)
         if (data.status == 'inserted') {
             generateMailService.sendSMS(data._id).then(function (result) {
-                console.log("after sending mail", result)
+                console.log("after sending SMS", result)
+            return callback('',result);
 
             })
         }
@@ -24,6 +25,7 @@ function sendSMSTextLocal(smsData,callback) {
         if (data.status == 'inserted') {
             generateMailService.sendSMS(data._id).then(function (result) {
                 console.log("after sending mail", result)
+                return callback('',result);
 
             })
         }

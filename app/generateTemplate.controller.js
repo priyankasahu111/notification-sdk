@@ -8,7 +8,7 @@ function generateTemplate(templateDetial, callback) {
 
         generateMailService.saveMailInfo(templateDetial).then(function (data) {
             console.log("And now we get data here", data)
-            return callback('',message);
+            return callback('',data);
         }).catch(function (err) {
             console.log("And now we get error here", err)
             return callback(err,'');
@@ -28,7 +28,7 @@ function sendMail(mailData,callback) {
     //     console.log("And now we get data here", data)
         generateMailService.sendMail(mailData).then(function (result) {
             console.log("after sending mail", result)
-            return callback('',message);
+            return callback('',result);
         }).catch(function (err) {
             console.log("And now we get error while sending mail ", err)
             return callback(err,'');
