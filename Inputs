@@ -11,3 +11,35 @@ templateDetail={
     "dbName":"BAROSA"
 }
 }
+
+
+var mailDetail = {
+    "dbDetails": {
+        "connectionStringForSDk": "mongodb://127.0.0.1:27017/",
+        "dbName": "BAROSA"
+    },
+    "emailConfig":{
+        "service": "gmail",
+        "host": "smtp.gmail.com",
+        "user": "info.cateina@gmail.com",
+        "pass": "cateina@123",
+        secure: false,
+        requireTLS: true,
+        ciphers: 'SSLv3'
+
+    }
+}
+
+
+var smsDetail = {
+    "dbDetails": {
+        "connectionStringForSDk": "mongodb://127.0.0.1:27017/",
+        "dbName": "BAROSA"
+    },
+    "smsConfig":{
+        "accountSid": "gmail",
+        "authToken": "smtp.gmail.com",
+        "twilioNumber": "info.cateina@gmail.com"
+
+    }
+}

@@ -17,8 +17,8 @@ var nodemailer = require("nodemailer");                                 // requi
 function sendEmail(connectionString, mailDetail, callback) {
     try {
 
-        console.log("TEST connectionString : "+connectionString)
-        console.log("TEST mailDetail : "+mailDetail)
+        console.log("TEST connectionString : " + connectionString)
+        console.log("TEST mailDetail : " + mailDetail)
 
 
         var to = mailDetail.to;
@@ -26,17 +26,24 @@ function sendEmail(connectionString, mailDetail, callback) {
         var sub = mailDetail.subject;
         var cc = mailDetail.cc;
         var bcc = mailDetail.bcc;
-        var attachmentPath = mailDetail.attachmentPath;
-        var fileName = mailDetail.fileName;
 
+        if (mailDetail.attachmentPath != null) {
+            var attachmentPath = mailDetail.attachmentPath;
+            var fileName = mailDetail.fileName;
+        }
 
 
         var smtpTransport = nodemailer.createTransport({
             service: connectionString.service,
             host: connectionString.host,
+            secure: connectionString.secure,
+            requireTLS: connectionString.requireTLS,
             auth: {
                 user: connectionString.user,
                 pass: connectionString.pass
+            },
+            tls: {
+                ciphers: connectionString.ciphers
             }
         });
 
@@ -45,8 +52,11 @@ function sendEmail(connectionString, mailDetail, callback) {
             cc: cc,
             bcc: bcc,
             subject: sub,
-            text: mailBody,
-            attachments: [{ // file on disk as an attachment
+            text: mailBody
+        }
+
+        if (mailDetail.attachmentPath != null) {
+            mailOptions['attachments'] = [{ // file on disk as an attachment
                 filename: fileName,
                 path: attachmentPath // stream this file
             }]

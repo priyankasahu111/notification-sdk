@@ -62,9 +62,9 @@ function saveMailInfo(body) {
             appId: body.appName,
             ModuleId: "Consent",
             title: "",
-            emailDate:new Date(),
-            smsDate:new Date(),
-            createDate:new Date()
+            emailDate: new Date(),
+            smsDate: new Date(),
+            createDate: new Date()
         }
 
         var notiCollectionName = "Notification";
@@ -111,7 +111,10 @@ async function sendMail(body) {
                 "service": emailConfig.service,
                 "host": emailConfig.host,
                 "user": emailConfig.user,
-                "pass":emailConfig.pass
+                "pass": emailConfig.pass,
+                "secure": emailConfig.secure,
+                "requireTLS": emailConfig.requireTLS,
+                "ciphers": emailConfig.ciphers
             }
 
 
@@ -119,75 +122,75 @@ async function sendMail(body) {
             for (var i = 0; i < emailInfo.length; i++) {
                 await new Promise(next => {
 
-                var notificationData = emailInfo[i];
+                    var notificationData = emailInfo[i];
 
-                console.log("emailInfo ======>", notificationData)
+                    console.log("emailInfo ======>", notificationData)
 
 
-                // setTimeout(() => {
-                var mailDetail = {
-                    "to": notificationData.receiverMailId,
-                    "cc": notificationData.ccMailId,
-                    "bcc": notificationData.bccMailId,
-                    "subject": notificationData.emailSub,
-                    "mailBody": notificationData.emailBody
-                }
-
-                notification.sendEmail(connectionString, mailDetail, async function (err, data) {
-                    if (err) {
-                        console.log("DB function called inside error ", notificationData);
-
-                        // bind the collection based on appName
-                        var updateData = {};
-                        updateData["emailStatus"] = "3";
-                        var conditionForUpdate = {};
-                        conditionForUpdate["_id"] = notificationData._id
-                        crud.update(dbDetails.connectionStringForSDk, dbDetails.dbName, collectionName, updateData, conditionForUpdate, async function (err, response) {
-                            if (err) {
-                                console.error(err);
-                                deferred.reject(err);
-                                next()
-                            }
-                            if (response.length) {
-                                console.log("db updated inside error of sending mail")
-                                next()
-                                deferred.resolve(response);
-                            } else {
-                                console.log("not db updated inside error of sending mail")
-                                var err1 = "not upadted";
-                                next()
-                                deferred.resolve(err1);
-                            }
-                        })
-                    } else {
-                        console.log("inside success", notificationData.receiverMailId)
-                        var updateData = {};
-                        updateData["emailStatus"] = "2";
-                        var conditionForUpdate = {};
-                        conditionForUpdate["_id"] = notificationData._id
-                        crud.update(dbDetails.connectionStringForSDk, dbDetails.dbName, collectionName, updateData, conditionForUpdate, async function (err, response) {
-                            if (err) {
-                                console.error(err);
-                                deferred.reject(err);
-                                next()
-                            }
-                            if (response.length) {
-                                console.log("db updated inside success of sending mail")
-                                next()
-                                deferred.resolve(response);
-                            } else {
-                                console.log("not db updated inside success of sending mail")
-                                var err1 = "not upadted";
-                                next()
-                                deferred.resolve(err1);
-                            }
-                        })
+                    // setTimeout(() => {
+                    var mailDetail = {
+                        "to": notificationData.receiverMailId,
+                        "cc": notificationData.ccMailId,
+                        "bcc": notificationData.bccMailId,
+                        "subject": notificationData.emailSub,
+                        "mailBody": notificationData.emailBody
                     }
 
-                    console.log("after mail sending result is", data)
-                });
-                // }, 2000)
-            })
+                    notification.sendEmail(connectionString, mailDetail, async function (err, data) {
+                        if (err) {
+                            console.log("DB function called inside error ", notificationData);
+
+                            // bind the collection based on appName
+                            var updateData = {};
+                            updateData["emailStatus"] = "3";
+                            var conditionForUpdate = {};
+                            conditionForUpdate["_id"] = notificationData._id
+                            crud.update(dbDetails.connectionStringForSDk, dbDetails.dbName, collectionName, updateData, conditionForUpdate, async function (err, response) {
+                                if (err) {
+                                    console.error(err);
+                                    deferred.reject(err);
+                                    next()
+                                }
+                                if (response.length) {
+                                    console.log("db updated inside error of sending mail")
+                                    next()
+                                    deferred.resolve(response);
+                                } else {
+                                    console.log("not db updated inside error of sending mail")
+                                    var err1 = "not upadted";
+                                    next()
+                                    deferred.resolve(err1);
+                                }
+                            })
+                        } else {
+                            console.log("inside success", notificationData.receiverMailId)
+                            var updateData = {};
+                            updateData["emailStatus"] = "2";
+                            var conditionForUpdate = {};
+                            conditionForUpdate["_id"] = notificationData._id
+                            crud.update(dbDetails.connectionStringForSDk, dbDetails.dbName, collectionName, updateData, conditionForUpdate, async function (err, response) {
+                                if (err) {
+                                    console.error(err);
+                                    deferred.reject(err);
+                                    next()
+                                }
+                                if (response.length) {
+                                    console.log("db updated inside success of sending mail")
+                                    next()
+                                    deferred.resolve(response);
+                                } else {
+                                    console.log("not db updated inside success of sending mail")
+                                    var err1 = "not upadted";
+                                    next()
+                                    deferred.resolve(err1);
+                                }
+                            })
+                        }
+
+                        console.log("after mail sending result is", data)
+                    });
+                    // }, 2000)
+                })
             }
         }
     });

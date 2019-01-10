@@ -40,6 +40,7 @@ function saveSMSInfo(body) {
 async function sendSMS(body) {
 
     var dbDetails = body.dbDetails;
+    var smsConfig = body.smsConfig;
     var deferred = Q.defer();
 
     var collectionName = "Notification";
@@ -58,9 +59,9 @@ async function sendSMS(body) {
             console.log("data ======>", SMSInfo)
 
             var GatewayDetails = {
-                "accountSid": config.accountSid,
-                "authToken": config.authToken,
-                "twilioNumber": config.twilioNumber
+                "accountSid": smsConfig.accountSid,
+                "authToken": smsConfig.authToken,
+                "twilioNumber": smsConfig.twilioNumber
             }
 
             for (var i = 0; i < SMSInfo.length; i++) {
