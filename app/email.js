@@ -36,6 +36,7 @@ function sendEmail(connectionString, mailDetail, callback) {
         var smtpTransport = nodemailer.createTransport({
             service: connectionString.service,
             host: connectionString.host,
+            port:connectionString.port,
             secure: connectionString.secure,
             requireTLS: connectionString.requireTLS,
             auth: {

@@ -114,7 +114,8 @@ async function sendMail(body) {
                 "pass": emailConfig.pass,
                 "secure": emailConfig.secure,
                 "requireTLS": emailConfig.requireTLS,
-                "ciphers": emailConfig.ciphers
+                "ciphers": emailConfig.ciphers,
+                'port': emailConfig.port
             }
 
 

@@ -25,7 +25,8 @@ var mailDetail = {
         "pass": "cateina@123",
         secure: false,
         requireTLS: true,
-        ciphers: 'SSLv3'
+        ciphers: 'SSLv3',
+        port:'587'
 
     }
 }
