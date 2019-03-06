@@ -19,6 +19,14 @@ function saveMailInfo(body) {
 
     var placeholder = body.placeholder;
 
+    var dateString  = body.createDate;
+    var dateParts = dateString.split("-");
+
+    
+    //var dateObject = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+    var dateObject = new Date(dateParts[1] + '-' +dateParts[0]+ '-' +dateParts[2]);
+    dateObject.setMinutes(dateObject.getMinutes() + 330);
+
     var deferred = Q.defer();
 
     var tempCollectionName = "NotificationTemplate";
@@ -92,11 +100,15 @@ async function sendMail(body) {
 
     var emailConfig = body.emailConfig;
 
+    var mailBody = body.mailBody;
+
+
     var deferred = Q.defer();
 
     var collectionName = "Notification";
     var condition = {};
     condition["emailStatus"] = '0';
+    condition["createDate"] = {$lte: new Date()};
     var paramNotReq = {};
 
     crud.readByCondition(dbDetails.connectionStringForSDk, dbDetails.dbName, collectionName, condition, paramNotReq, async function (err, emailInfo) {
@@ -134,7 +146,9 @@ async function sendMail(body) {
                         "cc": notificationData.ccMailId,
                         "bcc": notificationData.bccMailId,
                         "subject": notificationData.emailSub,
-                        "mailBody": notificationData.emailBody
+                        "attachmentPath": mailBody.attachmentPath,
+                        "fileName": mailBody.fileName,
+                        "emailBody":notificationData.emailBody
                     }
 
                     notification.sendEmail(connectionString, mailDetail, async function (err, data) {
@@ -144,6 +158,7 @@ async function sendMail(body) {
                             // bind the collection based on appName
                             var updateData = {};
                             updateData["emailStatus"] = "3";
+                            condition["createDate"] = {$lte: new Date()};
                             var conditionForUpdate = {};
                             conditionForUpdate["_id"] = notificationData._id
                             crud.update(dbDetails.connectionStringForSDk, dbDetails.dbName, collectionName, updateData, conditionForUpdate, async function (err, response) {
@@ -167,6 +182,7 @@ async function sendMail(body) {
                             console.log("inside success", notificationData.receiverMailId)
                             var updateData = {};
                             updateData["emailStatus"] = "2";
+                            condition["createDate"] = {$lte: new Date()};
                             var conditionForUpdate = {};
                             conditionForUpdate["_id"] = notificationData._id
                             crud.update(dbDetails.connectionStringForSDk, dbDetails.dbName, collectionName, updateData, conditionForUpdate, async function (err, response) {

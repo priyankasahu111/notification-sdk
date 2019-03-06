@@ -24,6 +24,7 @@ function sendEmail(connectionString, mailDetail, callback) {
         var to = mailDetail.to;
         var mailBody = mailDetail.mailBody;
         var sub = mailDetail.subject;
+        var emailBody = mailDetail.emailBody;
         var cc = mailDetail.cc;
         var bcc = mailDetail.bcc;
 
@@ -53,7 +54,7 @@ function sendEmail(connectionString, mailDetail, callback) {
             cc: cc,
             bcc: bcc,
             subject: sub,
-            text: mailBody
+            text: emailBody
         }
 
         if (mailDetail.attachmentPath != null) {

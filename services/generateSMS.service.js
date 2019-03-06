@@ -68,14 +68,16 @@ async function sendSMS(body) {
                 await new Promise(next => {
                 var smsData =  SMSInfo[i];
 
-                    console.log("SMS NUMBER : "+smsData.receiverPhoneNo);
-
-                var msgDetails = {
-                    "mobilleNumber": smsData.receiverPhoneNo,
-                    "smsBody":smsData.smsBody
-                }
-
-
+                console.log("SMS NUMBER : "+SMSInfo[i]);
+                    
+                for (var j = 0; j < smsData.receiverPhoneNo.length; j++) {
+                    console.log("Inside receiver phone no", smsData.receiverPhoneNo);
+                    
+            var msgDetails = {
+                "mobilleNumber": smsData.receiverPhoneNo[j],
+                "smsBody":smsData.smsBody
+            }             
+                
                 notification.sendSMSTwilio(GatewayDetails, msgDetails, async function (err, data) {
                     if (err) {
                         console.error("ERROR WHILE SENDING SMS ",err);
@@ -130,6 +132,7 @@ async function sendSMS(body) {
                     }
                     deferred.resolve(data)
                 });
+            }
             })
             }
         }
